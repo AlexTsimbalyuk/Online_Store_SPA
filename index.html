@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular Routing App</title>
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body ng-controller="main_ctrl">
+
+	<div class="header">
+		<div class="title"><h1>TOYS</h1></div>
+		<div class="cart">
+			<span class="cart__icon ion-ios-cart-outline"></span>
+			<span class="cart__sum">Общая сумма: <span class="cart__sum--money">{{ getTotalCost() }}</span> грн.</span>
+			<div ng-if="removeElem" class="cart__round"><a href="#!/cart">{{ sumProductInCart }}</a></div>
+		</div>
+		<div class="navbar">
+			<div class="navbar__dropdown ion-navicon-round"></div>
+			<ul class="navbar__menu">
+				<li class="navbar__menu--item"><a href="#!/lego">Конструкторы Lego</a></li>
+				<li class="navbar__menu--item"><a href="#!/stuffed">Мягкие игрушки</a></li>
+				<li class="navbar__menu--item"><a href="#!/radio">Радио-игрушки</a></li>
+			</ul>			
+		</div>
+	</div>
+	
+	<ng-view></ng-view>
+		
+	<script>
+		var menu = document.querySelector(".navbar__menu");
+		var dropdown = document.querySelector(".navbar__dropdown");
+
+		dropdown.onclick = function() {
+			menu.classList.toggle("open");
+			dropdown.classList.toggle("ion-close-round");
+			dropdown.classList.toggle("ion-navicon-round");
+		};
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+	<script src="app/app.js"></script>
+	<script src="app/app_model.js"></script>
+	<script src="app/main_ctrl.js"></script>
+	
+</body>
+</html>
